@@ -1,7 +1,7 @@
  var config = {
     type: Phaser.AUTO,
     width: 1600,
-    height: 1600,
+    height: 1200,
     physics: {
         default: "arcade",
         arcade: {
@@ -53,14 +53,18 @@
     const aboveLayer = map.createStaticLayer("Foreground", tileset, 0, 0);
     
 	
-	worldLayer.setCollisionByProperty({ collides: true });
+    worldLayer.setCollisionByProperty({ collides: true });
+    belowLayer.setCollisionByProperty({ collides: true });
 	
 	aboveLayer.setDepth(10);
 	
 	const spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
 	
-	 player = this.physics.add.sprite(100, 450, 'thief');
-	
+	player = this.physics.add.sprite(100, 450, 'thief');
+    
+    player.setCollideWorldBounds(true);
+
+
 	this.anims.create({
         key: 'thief-walk-forward',
         frames: this.anims.generateFrameNumbers('thief', { start: 104, end: 112 }),
@@ -90,7 +94,8 @@
         repeat: -1
     });
 	
-	this.physics.add.collider(player, worldLayer);
+    this.physics.add.collider(player, worldLayer);
+    this.physics.add.collider(player, belowLayer);
 	
 	const camera = this.cameras.main;
 	camera.startFollow(player);
