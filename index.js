@@ -46,7 +46,7 @@
 {
     const map = this.make.tilemap({ key: "map" });
 	
-	const tileset = map.addTilesetImage("tileset1", "tileset");
+	const tileset = map.addTilesetImage("tileset1", "tileset", 32, 32, 0, 0);
 	
 	const belowLayer = map.createStaticLayer("Background", tileset, 0, 0);
 	const worldLayer = map.createDynamicLayer("Midground", tileset, 0, 0);
@@ -101,7 +101,6 @@
 	camera.startFollow(player);
 	camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 	
-	
 	cursors = this.input.keyboard.createCursorKeys();
 
 }	
@@ -125,28 +124,27 @@
     player.body.setVelocityX(speed);
   }
 
-  // Vertical movement
+
   if (cursors.up.isDown) {
     player.body.setVelocityY(-speed);
   } else if (cursors.down.isDown) {
     player.body.setVelocityY(speed);
   }
 
-  // Normalize and scale the velocity so that player can't move faster along a diagonal
+
   player.body.velocity.normalize().scale(speed);
   
 
-  if (cursors.left.isDown) {
-    player.anims.play("thief-walk-left", true);
-  } else if (cursors.right.isDown) {
-    player.anims.play("thief-walk-right", true);
-  } else if (cursors.up.isDown) {
-    player.anims.play("thief-walk-forward", true);
-  } else if (cursors.down.isDown) {
-    player.anims.play("thief-walk-back", true);
-  } else {
-    player.anims.stop();
-  }
-
-	
+if (cursors.left.isDown) {
+      player.anims.play("thief-walk-left", true);
+    } else if (cursors.right.isDown) {
+        player.anims.play("thief-walk-right", true);
+    } else if (cursors.up.isDown) {
+        player.anims.play("thief-walk-forward", true);
+    } else if (cursors.down.isDown) {
+        player.anims.play("thief-walk-back", true);
+    } else {
+        player.anims.stop();
     }
+}
+
