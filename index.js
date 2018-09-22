@@ -25,6 +25,7 @@ let player;
 let gold = 0;
 let chest;
 let skeleton;
+let keys;
 
 let game = new Phaser.Game(config);
 
@@ -142,7 +143,8 @@ function create ()
     
     this.physics.world.setBounds(0, 0, 1600, 1600);
 	
-	cursors = this.input.keyboard.createCursorKeys();
+    cursors = this.input.keyboard.createCursorKeys();
+    keys = this.input.keyboard.addKeys('W,S,A,D');
 
 }	
 	
@@ -156,29 +158,29 @@ function update ()
     player.body.setVelocity(0);
 	
 	
-	if (cursors.left.isDown) {
+	if ((cursors.left.isDown) || (keys.A.isDown)) {
         player.body.setVelocityX(-speed);
-    } else if (cursors.right.isDown) {
+    } else if ((cursors.right.isDown) || (keys.D.isDown)) {
         player.body.setVelocityX(speed);
     }
     
     
-    if (cursors.up.isDown) {
+    if ((cursors.up.isDown) || (keys.W.isDown)) {
         player.body.setVelocityY(-speed);
-    } else if (cursors.down.isDown) {
+    } else if ((cursors.down.isDown) || (keys.S.isDown)) {
         player.body.setVelocityY(speed);
     }
     
     player.body.velocity.normalize().scale(speed);
     
     
-    if (cursors.left.isDown) {
+    if ((cursors.left.isDown) || (keys.A.isDown)) {
       player.anims.play("thief-walk-left", true);
-    } else if (cursors.right.isDown) {
+    } else if ((cursors.right.isDown) || (keys.D.isDown)) {
         player.anims.play("thief-walk-right", true);
-    } else if (cursors.up.isDown) {
+    } else if ((cursors.up.isDown) || (keys.W.isDown)) {
         player.anims.play("thief-walk-forward", true);
-    } else if (cursors.down.isDown) {
+    } else if ((cursors.down.isDown) || (keys.S.isDown)) {
         player.anims.play("thief-walk-back", true);
     } else {
         player.anims.stop();
@@ -190,3 +192,11 @@ function update ()
    // .setSize(31, 60);
 }
 
+
+/*function collectStar (player, star)
+{
+    star.disableBody(true, true);
+
+    score += 10;
+    scoreText.setText('Score: ' + score);
+}*/
