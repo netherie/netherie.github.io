@@ -65,7 +65,7 @@ function create ()
     .setOffset(0, 0)
     .setSize(31, 60);
 
-    skeleton = this.physics.add.sprite(400, 300, 'skeleton');
+    skeleton = this.physics.add.sprite(500, 500, 'skeleton');
 
 
     
@@ -135,6 +135,7 @@ function create ()
 	
     this.physics.add.collider(player, worldLayer);
     this.physics.add.collider(player, belowLayer);
+    this.physics.add.collider(player, skeleton);
 	
     const camera = this.cameras.main;
     camera.setRoundPixels(true);
