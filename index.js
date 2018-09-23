@@ -75,16 +75,16 @@ function create ()
 
 	
 
-	this.anims.create({
-        key: 'thief-walk-back',
-        frames: this.anims.generateFrameNumbers('thief', { start: 130, end: 138 }),
+    this.anims.create({
+        key: 'thief-walk-forward',
+        frames: this.anims.generateFrameNumbers('thief', { start: 104, end: 112 }),
         frameRate: 10,
         repeat: -1
     });
 
     this.anims.create({
-        key: 'thief-walk-forward',
-        frames: this.anims.generateFrameNumbers('thief', { start: 104, end: 112 }),
+        key: 'thief-walk-back',
+        frames: this.anims.generateFrameNumbers('thief', { start: 130, end: 138 }),
         frameRate: 10,
         repeat: -1
     });
@@ -99,6 +99,35 @@ function create ()
     this.anims.create({
         key: 'thief-walk-right',
         frames: this.anims.generateFrameNumbers('thief', { start: 143, end: 151 }),
+        frameRate: 10,
+        repeat: -1
+    });
+
+  
+    this.anims.create({
+        key: 'thief-attack-forward',
+        frames: this.anims.generateFrameNumbers('thief', { start: 156, end: 161 }),
+        frameRate: 10,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'thief-attack-back',
+        frames: this.anims.generateFrameNumbers('thief', { start: 182, end: 187 }),
+        frameRate: 10,
+        repeat: -1
+    });
+
+   this.anims.create({
+        key: 'thief-attack-left',
+        frames: this.anims.generateFrameNumbers('thief', { start: 169, end: 174 }),
+        frameRate: 10,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'thief-attack-right',
+        frames: this.anims.generateFrameNumbers('thief', { start: 195, end: 200 }),
         frameRate: 10,
         repeat: -1
     });
@@ -132,13 +161,41 @@ function create ()
         frameRate: 10,
         repeat: -1
     });
+
+    this.anims.create({
+        key: 'skeleton-attack-back',
+        frames: this.anims.generateFrameNumbers('skeleton', { start: 52, end: 59 }),
+        frameRate: 10,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'skeleton-attack-forward',
+        frames: this.anims.generateFrameNumbers('skeleton', { start: 78, end: 85 }),
+        frameRate: 10,
+        repeat: -1
+    });
+    
+   this.anims.create({
+        key: 'skeleton-attack-left',
+        frames: this.anims.generateFrameNumbers('skeleton', { start: 65, end: 72 }),
+        frameRate: 10,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'skeleton-attack-right',
+        frames: this.anims.generateFrameNumbers('skeleton', { start: 91, end: 98 }),
+        frameRate: 10,
+        repeat: -1
+    });
 	
     this.physics.add.collider(player, worldLayer);
     this.physics.add.collider(player, belowLayer);
     this.physics.add.collider(player, skeleton);
 	
     const camera = this.cameras.main;
-    camera.setRoundPixels(true);
+    //camera.setRoundPixels(true);
 	camera.startFollow(player);
     camera.setBounds(0, 0, 1600*2, 1600*2);
     
