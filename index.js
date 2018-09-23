@@ -71,6 +71,7 @@ function create ()
     
     
     player.setCollideWorldBounds(true);
+    skeleton.setCollideWorldBounds(true);
 
 
 	
@@ -192,6 +193,8 @@ function create ()
 	
     this.physics.add.collider(player, worldLayer);
     this.physics.add.collider(player, belowLayer);
+    this.physics.add.collider(skeleton, worldLayer);
+    this.physics.add.collider(skeleton, belowLayer);
     this.physics.add.collider(player, skeleton);
 	
     const camera = this.cameras.main;
