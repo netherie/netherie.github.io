@@ -183,11 +183,11 @@ function create ()
     this.physics.add.collider(skeleton, belowLayer);
     this.physics.add.collider(player, skeleton);
 
-    stars = this.physics.add.group({
+    /*chest = this.physics.add.group({
         key: 'chest',
         repeat: 11,
         setXY: { x: 12, y: 0, stepX: 70 }
-    });
+    });*/
 
     this.physics.add.collider(player, chest, openChest, null, this);
 
