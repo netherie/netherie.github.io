@@ -22,7 +22,6 @@ let sprite;
 let player;
 let gold = 0;
 let chest;
-let skeleton;
 let keys;
 let scoreText;
 
@@ -34,7 +33,6 @@ function preload ()
     this.load.tilemapTiledJSON('map', "../maps/map13.json");
     this.load.image('chest', "tilesets/chest.png");
     this.load.spritesheet('thief', 'sprites/thief.png', { frameWidth: 64, frameHeight: 64});
-    this.load.spritesheet('skeleton', 'sprites/skeleton.png', { frameWidth: 64, frameHeight: 64});
 }
 
 
@@ -59,10 +57,8 @@ function create ()
     .setOffset(0, 0)
     .setSize(31, 60);
 
-    skeleton = this.physics.add.sprite(500, 500, 'skeleton');
-
     player.setCollideWorldBounds(true);
-    skeleton.setCollideWorldBounds(true);
+
 
       
     this.anims.create({
@@ -92,102 +88,22 @@ function create ()
         frameRate: 10,
         repeat: -1
     });
-    
-    this.anims.create({
-        key: 'thief-attack-forward',
-        frames: this.anims.generateFrameNumbers('thief', { start: 156, end: 161 }),
-        frameRate: 10,
-        repeat: -1
-    });
-
-    this.anims.create({
-        key: 'thief-attack-back',
-        frames: this.anims.generateFrameNumbers('thief', { start: 182, end: 187 }),
-        frameRate: 10,
-        repeat: -1
-    });
-    
-    this.anims.create({
-        key: 'thief-attack-left',
-        frames: this.anims.generateFrameNumbers('thief', { start: 169, end: 174 }),
-        frameRate: 10,
-        repeat: -1
-    });
-
-    this.anims.create({
-        key: 'thief-attack-right',
-        frames: this.anims.generateFrameNumbers('thief', { start: 195, end: 200 }),
-        frameRate: 10,
-        repeat: -1
-    });
-    
-    this.anims.create({
-        key: 'skeleton-walk-back',
-        frames: this.anims.generateFrameNumbers('skeleton', { start: 130, end: 138 }),
-        frameRate: 10,
-        repeat: -1
-    });
-
-    this.anims.create({
-        key: 'skeleton-walk-forward',
-        frames: this.anims.generateFrameNumbers('skeleton', { start: 104, end: 112 }),
-        frameRate: 10,
-        repeat: -1
-    });
-
-    this.anims.create({
-        key: 'skeleton-walk-left',
-        frames: this.anims.generateFrameNumbers('skeleton', { start: 117, end: 125 }),
-        frameRate: 10,
-        repeat: -1
-    });
-    
-    this.anims.create({
-        key: 'skeleton-walk-right',
-        frames: this.anims.generateFrameNumbers('skeleton', { start: 143, end: 151 }),
-        frameRate: 10,
-        repeat: -1
-    });
-    
-    this.anims.create({
-        key: 'skeleton-attack-back',
-        frames: this.anims.generateFrameNumbers('skeleton', { start: 52, end: 59 }),
-        frameRate: 10,
-        repeat: -1
-    });
-
-    this.anims.create({
-        key: 'skeleton-attack-forward',
-        frames: this.anims.generateFrameNumbers('skeleton', { start: 78, end: 85 }),
-        frameRate: 10,
-        repeat: -1
-    });
-
-    this.anims.create({
-        key: 'skeleton-attack-left',
-        frames: this.anims.generateFrameNumbers('skeleton', { start: 65, end: 72 }),
-        frameRate: 10,
-        repeat: -1
-    });
-    
-    this.anims.create({
-        key: 'skeleton-attack-right',
-        frames: this.anims.generateFrameNumbers('skeleton', { start: 91, end: 98 }),
-        frameRate: 10,
-        repeat: -1
-    });
 
     this.physics.add.collider(player, worldLayer);
     this.physics.add.collider(player, belowLayer);
-    this.physics.add.collider(skeleton, worldLayer);
-    this.physics.add.collider(skeleton, belowLayer);
-    this.physics.add.collider(player, skeleton);
 
-    /*chest = this.physics.add.group({
-        key: 'chest',
-        repeat: 11,
-        setXY: { x: 12, y: 0, stepX: 70 }
-    });*/
+    const chest1 = map.findObject("Objects", obj => obj.name === "chest1");
+    const chest2 = map.findObject("Objects", obj => obj.name === "chest2");
+    const chest3 = map.findObject("Objects", obj => obj.name === "chest3");
+    const chest4 = map.findObject("Objects", obj => obj.name === "chest4");
+
+    chest = this.physics.add.group();
+ 
+    chest.create(chest1.x, chest1.y, 'chest');
+    chest.create(chest2.x, chest2.y, 'chest');
+    chest.create(chest3.x, chest3.y, 'chest');
+    chest.create(chest4.x, chest4.y, 'chest');
+
 
     this.physics.add.collider(player, chest, openChest, null, this);
 
@@ -201,8 +117,15 @@ function create ()
     keys = this.input.keyboard.addKeys('W,S,A,D');
 
 
-    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
-
+    scoreText = this.add
+    .text(16, 16, 'score: 0', {
+        font: "18px monospace",
+        fill: "#000000",
+        padding: { x: 20, y: 10 },
+        backgroundColor: "#ffffff"
+        })
+    .setScrollFactor(0)
+    .setDepth(30);
 }
 
 
@@ -246,18 +169,12 @@ function update ()
 function openChest (player, chest)
 {
     chest.disableBody(true, true);
+    
 
-    gold += 10;
-    scoreText.setText('Score: ' + score);
+    gold += 100;
+    scoreText.setText('Gold: ' + gold);
 
 }
-        
-
-    //player = this.physics.add
-    //.sprite(spawnPoint.x, spawnPoint.y, 'thief')
-   // .setOffset(0, 0)
-   // .setSize(31, 60);
-
     
 
 
