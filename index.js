@@ -15,8 +15,6 @@ var config = {
     }
 };
 
-
-
 let cursors;
 let map;
 let layer;
@@ -26,40 +24,36 @@ let gold = 0;
 let chest;
 let skeleton;
 let keys;
+let scoreText;
 
 let game = new Phaser.Game(config);
 
-
 function preload ()
 {
-	
-this.load.image('tileset', "tilesets/tileset1.png");
-this.load.tilemapTiledJSON('map', "../maps/map13.json");
-this.load.spritesheet('thief', 'sprites/thief.png', { frameWidth: 64, frameHeight: 64});
-this.load.spritesheet('skeleton', 'sprites/skeleton.png', { frameWidth: 64, frameHeight: 64});
+    this.load.image('tileset', "tilesets/tileset1.png");
+    this.load.tilemapTiledJSON('map', "../maps/map13.json");
+    this.load.image('chest', "tilesets/chest.png");
+    this.load.spritesheet('thief', 'sprites/thief.png', { frameWidth: 64, frameHeight: 64});
+    this.load.spritesheet('skeleton', 'sprites/skeleton.png', { frameWidth: 64, frameHeight: 64});
 }
-	
 
-   
-   
+
 function create ()
 {
     const map = this.make.tilemap({ key: "map" });
-	
-	const tileset = map.addTilesetImage("tileset1", "tileset", 32, 32, 0, 0);
-	
-	const belowLayer = map.createStaticLayer("Background", tileset, 0, 0);
-	const worldLayer = map.createDynamicLayer("Midground", tileset, 0, 0);
+    const tileset = map.addTilesetImage("tileset1", "tileset", 32, 32, 0, 0);
+    
+    const belowLayer = map.createStaticLayer("Background", tileset, 0, 0);
+    const worldLayer = map.createDynamicLayer("Midground", tileset, 0, 0);
     const aboveLayer = map.createStaticLayer("Foreground", tileset, 0, 0);
     
-	
     worldLayer.setCollisionByProperty({ collides: true });
     belowLayer.setCollisionByProperty({ collides: true });
-	
-	aboveLayer.setDepth(10);
-	
-	const spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
-	
+
+    aboveLayer.setDepth(10);
+
+    const spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
+
     player = this.physics.add
     .sprite(spawnPoint.x, spawnPoint.y, 'thief')
     .setOffset(0, 0)
@@ -67,15 +61,10 @@ function create ()
 
     skeleton = this.physics.add.sprite(500, 500, 'skeleton');
 
-
-    
-    
     player.setCollideWorldBounds(true);
     skeleton.setCollideWorldBounds(true);
 
-
-	
-
+      
     this.anims.create({
         key: 'thief-walk-forward',
         frames: this.anims.generateFrameNumbers('thief', { start: 104, end: 112 }),
@@ -90,21 +79,20 @@ function create ()
         repeat: -1
     });
 
-   this.anims.create({
+    this.anims.create({
         key: 'thief-walk-left',
         frames: this.anims.generateFrameNumbers('thief', { start: 117, end: 125 }),
         frameRate: 10,
         repeat: -1
     });
-
+    
     this.anims.create({
         key: 'thief-walk-right',
         frames: this.anims.generateFrameNumbers('thief', { start: 143, end: 151 }),
         frameRate: 10,
         repeat: -1
     });
-
-  
+    
     this.anims.create({
         key: 'thief-attack-forward',
         frames: this.anims.generateFrameNumbers('thief', { start: 156, end: 161 }),
@@ -118,8 +106,8 @@ function create ()
         frameRate: 10,
         repeat: -1
     });
-
-   this.anims.create({
+    
+    this.anims.create({
         key: 'thief-attack-left',
         frames: this.anims.generateFrameNumbers('thief', { start: 169, end: 174 }),
         frameRate: 10,
@@ -132,10 +120,8 @@ function create ()
         frameRate: 10,
         repeat: -1
     });
-
-  
-
-	this.anims.create({
+    
+    this.anims.create({
         key: 'skeleton-walk-back',
         frames: this.anims.generateFrameNumbers('skeleton', { start: 130, end: 138 }),
         frameRate: 10,
@@ -148,21 +134,21 @@ function create ()
         frameRate: 10,
         repeat: -1
     });
-    
-   this.anims.create({
+
+    this.anims.create({
         key: 'skeleton-walk-left',
         frames: this.anims.generateFrameNumbers('skeleton', { start: 117, end: 125 }),
         frameRate: 10,
         repeat: -1
     });
-
+    
     this.anims.create({
         key: 'skeleton-walk-right',
         frames: this.anims.generateFrameNumbers('skeleton', { start: 143, end: 151 }),
         frameRate: 10,
         repeat: -1
     });
-
+    
     this.anims.create({
         key: 'skeleton-attack-back',
         frames: this.anims.generateFrameNumbers('skeleton', { start: 52, end: 59 }),
@@ -176,88 +162,103 @@ function create ()
         frameRate: 10,
         repeat: -1
     });
-    
-   this.anims.create({
+
+    this.anims.create({
         key: 'skeleton-attack-left',
         frames: this.anims.generateFrameNumbers('skeleton', { start: 65, end: 72 }),
         frameRate: 10,
         repeat: -1
     });
-
+    
     this.anims.create({
         key: 'skeleton-attack-right',
         frames: this.anims.generateFrameNumbers('skeleton', { start: 91, end: 98 }),
         frameRate: 10,
         repeat: -1
     });
-	
+
     this.physics.add.collider(player, worldLayer);
     this.physics.add.collider(player, belowLayer);
     this.physics.add.collider(skeleton, worldLayer);
     this.physics.add.collider(skeleton, belowLayer);
     this.physics.add.collider(player, skeleton);
-	
+
+    stars = this.physics.add.group({
+        key: 'chest',
+        repeat: 11,
+        setXY: { x: 12, y: 0, stepX: 70 }
+    });
+
+    this.physics.add.collider(player, chest, openChest, null, this);
+
     const camera = this.cameras.main;
     //camera.setRoundPixels(true);
-	camera.startFollow(player);
+    camera.startFollow(player);
     camera.setBounds(0, 0, 1600*2, 1600*2);
-    
     this.physics.world.setBounds(0, 0, 1600, 1600);
-	
+    
     cursors = this.input.keyboard.createCursorKeys();
     keys = this.input.keyboard.addKeys('W,S,A,D');
 
-}	
-	
+
+    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+
+}
+
+
 
 function update ()
 {
     const speed = 175;
+
     const prevVelocity = player.body.velocity.clone();
-	
-    
+        
     player.body.setVelocity(0);
-	
-	
-	if ((cursors.left.isDown) || (keys.A.isDown)) {
+
+
+    if (cursors.left.isDown || keys.A.isDown) {
         player.body.setVelocityX(-speed);
-    } else if ((cursors.right.isDown) || (keys.D.isDown)) {
+    } else if (cursors.right.isDown || keys.D.isDown) {
         player.body.setVelocityX(speed);
     }
     
-    
-    if ((cursors.up.isDown) || (keys.W.isDown)) {
+    if (cursors.up.isDown || keys.W.isDown) {
         player.body.setVelocityY(-speed);
-    } else if ((cursors.down.isDown) || (keys.S.isDown)) {
+    } else if (cursors.down.isDown || keys.S.isDown) {
         player.body.setVelocityY(speed);
     }
     
     player.body.velocity.normalize().scale(speed);
     
-    
-    if ((cursors.left.isDown) || (keys.A.isDown)) {
-      player.anims.play("thief-walk-left", true);
-    } else if ((cursors.right.isDown) || (keys.D.isDown)) {
+    if (cursors.left.isDown || keys.A.isDown) {
+        player.anims.play("thief-walk-left", true);
+    } else if (cursors.right.isDown || keys.D.isDown) {
         player.anims.play("thief-walk-right", true);
-    } else if ((cursors.up.isDown) || (keys.W.isDown)) {
+    } else if (cursors.up.isDown || keys.W.isDown) {
         player.anims.play("thief-walk-forward", true);
-    } else if ((cursors.down.isDown) || (keys.S.isDown)) {
+    } else if (cursors.down.isDown || keys.S.isDown) {
         player.anims.play("thief-walk-back", true);
     } else {
         player.anims.stop();
     }
+}
+
+function openChest (player, chest)
+{
+    chest.disableBody(true, true);
+
+    gold += 10;
+    scoreText.setText('Score: ' + score);
+
+}
+        
 
     //player = this.physics.add
     //.sprite(spawnPoint.x, spawnPoint.y, 'thief')
    // .setOffset(0, 0)
    // .setSize(31, 60);
-}
+
+    
 
 
-/*function collectStar (player, star)
-{
-    star.disableBody(true, true);
 
-    score += 10;
-    scoreText.setText('Score: ' + score);
-}*/
