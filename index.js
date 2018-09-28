@@ -118,7 +118,7 @@ function create ()
 
 
     scoreText = this.add
-    .text(16, 16, 'score: 0', {
+    .text(16, 16, 'Gold: 0', {
         font: "18px monospace",
         fill: "#000000",
         padding: { x: 20, y: 10 },
