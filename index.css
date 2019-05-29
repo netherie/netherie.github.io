@@ -1,7 +1,7 @@
 .fadeIn {
     animation: fadeIn 3s;
     -webkit-animation: fadeIn 3s;
-    background: #f00;
+    background: rgba(75, 54, 54, 0,5);
     padding: 10px;
    }
    @keyframes fadeIn {
