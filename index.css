@@ -13,7 +13,7 @@
     to { opacity: 1; }
    }
 body {
-    background: url(assets/fon.jpg); /* Фоновая картинка */
+    background-image: url("assets/agalal.jpg"); /* Фоновая картинка */
     background-size: cover; /* Растягиваем фон */
 }
 .block {
