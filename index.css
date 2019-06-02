@@ -30,3 +30,8 @@ header {
     text-align: center;
     display : block;
 }
+
+a {
+    color: magenta;
+    font-family: Georgia;
+}
