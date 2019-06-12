@@ -18,8 +18,7 @@ body {
     font-family: Georgia;
     font-size: 20px;
     color : #fff;
-    background-image: url("assets/fon.jpg"); /* Фоновая картинка */
-    background-size: cover; /* Растягиваем фон */
+    
     
 }
 .block {
@@ -28,9 +27,16 @@ body {
     padding: 20px; /* Поля вокруг текста */
 }
 
+article {
+    background-image: url("assets/fon.jpg"); /* Фоновая картинка */
+    background-size: cover; /* Растягиваем фон */
+}
+
 header {
     text-align: center;
     display : block;
+    margin: 20%;
+    padding: 20px;
 
 }
 
