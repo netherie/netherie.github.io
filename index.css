@@ -13,9 +13,10 @@
     to { opacity: 1; }
    }
 body {
-    text-shadow: 1px 1px 2px black, 0 0 1em magenta; /* Параметры тени */
+    text-shadow: 1px 1px 2px black, 0 0 1em lightseagreen; /* Параметры тени */
     text-align: center;
     font-family: Georgia;
+    font-size: 20px;
     color : #fff;
     background-image: url("assets/fon.jpg"); /* Фоновая картинка */
     background-size: cover; /* Растягиваем фон */
