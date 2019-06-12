@@ -13,6 +13,7 @@
     to { opacity: 1; }
    }
 body {
+    text-shadow: 1px 1px 2px black, 0 0 1em magenta; /* Параметры тени */
     text-align: center;
     font-family: Georgia;
     color : #fff;
@@ -29,6 +30,7 @@ body {
 header {
     text-align: center;
     display : block;
+
 }
 
 a {
