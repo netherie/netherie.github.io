@@ -33,6 +33,8 @@ article {
 }
 
 header {
+    background: magenta;
+    color: #000; /* Цвет текста */
     text-align: center;
     display : block;
     margin: 10px;
