@@ -15,8 +15,7 @@
 body {
     background-image: url("assets/fon.jpg"); /* Фоновая картинка */
     text-align: center;
-    font-family: Georgia;
-    font-size: 20px;
+    font: italic small-caps bold 16px/1.5 Arial, sans-serif; 
     color : #fff;
     
     
