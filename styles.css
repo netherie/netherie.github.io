@@ -6,9 +6,14 @@ header {
 
 body {
     text-align: center;
+    font-size: 200%;
 }
 
-
+a {
+    text-decoration: none;
+    font-size: 110%;
+    padding: 4em;
+}
 
 /* Навигация - цвета */
 .firstLink {
