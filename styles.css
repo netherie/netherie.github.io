@@ -6,13 +6,13 @@ header {
 
 body {
     text-align: center;
+    font: normal 20px/1.6em Georgia, serif;
     font-size: 200%;
 }
 
 a {
     text-decoration: none;
     font-size: 100%;
-    padding: 100%;
 }
 
 /* Навигация - цвета */
