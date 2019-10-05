@@ -6,11 +6,12 @@ header {
 body {
     text-align: center;
     font: normal 20px/1.6em Georgia, serif;
-    font-size: 200%;
+    font-size: 150%;
 }
 
 a {
     text-decoration: none;
+    display:inline-block;
 }
 
 /* Навигация - цвета */
