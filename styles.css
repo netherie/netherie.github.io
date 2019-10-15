@@ -3,21 +3,21 @@ header {
     display : block;
 }
 
-nav{
+nav.navbar {
     background-color: #333;
     color: #fff;
 }
 
-.navbar ul{
+ul.navbar {
     padding:0;
     list-style: none;
 }
 
-.navbar li{
+li.navbar {
     display: inline;
 }
 
-.navbar a{
+a.navbar {
     color: #fff;
     font-size: 18px;
     padding-right: 15px;
