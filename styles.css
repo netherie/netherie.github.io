@@ -3,6 +3,26 @@ header {
     display : block;
 }
 
+.nav nav{
+    background-color: #333;
+    color: #fff;
+}
+
+.nav ul{
+    padding:0;
+    list-style: none;
+}
+
+.nav li{
+    display: inline;
+}
+
+.nav a{
+    color: #fff;
+    font-size: 18px;
+    padding-right: 15px;
+}
+
 body {
     text-align: center;
     font: normal 20px/1.6em Georgia, serif;
@@ -11,7 +31,6 @@ body {
 
 a {
     text-decoration: none;
-    display:inline-block;
 }
 
 /* Навигация 
