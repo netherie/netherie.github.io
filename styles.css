@@ -7,17 +7,17 @@ nav.navbar {
     color: #fff;
 }
 
-ul.navbar {
+ul.nav-list {
     padding:0;
     list-style: none;
     display: inline;
 }
 
-li.navbar {
+li.nav-item {
     display: inline;
 }
 
-a.navbar {
+a.nav-link {
     color: #fff;
     font-size: 18px;
     padding-right: 15px;
