@@ -37,18 +37,86 @@ img {
 }
 
 .navbar .container {
-    justify-content: end;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 60px 0px;
+}
+
+div.logo{
+    display: flex;
+    flex-flow: column wrap;
+    height: 130px;
+    width:300px;
 }
 
 .menu {
     display: flex;
-    margin: 30px 0px;
-    justify-self: flex-end;
     align-items: baseline;
-    justify-content: end;
-    width: 512px;
+    justify-content: flex-end;
+}
+
+li.menu {
+    justify-self: normal;
 }
 
 .firstScreen {
     background: linear-gradient(180deg, rgba(26, 26, 26, 0) 34.9%, #1A1A1A 91.15%), url(../res/bmw-image.webp);
+    background-repeat:round;
+}
+
+img.logo{
+    width: 100px;
+    height: 100px;
+}
+
+h1.logo{
+    font-weight: 700;
+    font-size: 5.3rem;
+}
+
+h2.logo {
+    margin-left: 0.3em;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    color: #999;
+}
+
+div.appoint{
+    display: flex;
+    margin: 60px 0px;
+    width: 300px;
+}
+
+h1.appoint{
+    margin-bottom: 60px;
+}
+
+ul.appoint{
+    list-style: url("res/rectangle.jpg") outside;
+    color: #999;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 120%;
+    align-items: center;
+    letter-spacing: 0.1em;
+    margin: 30px 0px;
+}
+
+
+button.appoint {
+    padding: 10px 40px;
+    background: #EB5757;
+    border-style: none;
+    border-radius: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 140%;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin: 100px 0px 225px;
 }
