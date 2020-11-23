@@ -7,15 +7,31 @@
 body {
     font-family: 'Roboto', sans-serif;
     color: #ccc;
-    background: #000;
+    background: #1A1A1A;
 }
 
 a {
     text-decoration: none;
+    color: #ccc;
 }
+
+a:link {
+    color: #ccc;
+  }
+  a:visited {
+    color: #ccc;
+  }
+  a:hover {
+    color: #ccc;
+  }
+  a:active {
+    color: #ccc; 
+  }
 
 ul{
     list-style: none;
+    text-decoration: none;
+
 }
 
 li {
@@ -60,11 +76,12 @@ li.menu {
 }
 
 .firstScreen {
-    background: linear-gradient(180deg, rgba(26, 26, 26, 0) 34.9%, #1A1A1A 91.15%), url(../res/bmw-image.webp);
+    background-image: linear-gradient(180deg, rgba(26, 26, 26, 0) 34.9%, #1A1A1A 91.15%), url(../res/bmw-image.jpeg);
     background-repeat:round;
 }
 
 img.logo{
+    margin-top: 16px;
     width: 100px;
     height: 100px;
 }
@@ -119,4 +136,12 @@ button.appoint {
     text-transform: uppercase;
     color: #FFFFFF;
     margin: 100px 0px 225px;
+}
+
+div.about {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: colunm;
+    align-items: center;
+    font-size: 18px;
 }
