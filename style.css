@@ -130,7 +130,6 @@ footer {
 
 
 .log_message p{
-    white-space: nowrap;
     overflow: auto;
     text-overflow: ellipsis;
     max-width: 300px;
