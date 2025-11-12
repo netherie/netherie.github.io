@@ -14,7 +14,7 @@ nav {
     width: 22%;
     justify-content: space-between;
     height: 60px;
-    min-width: 200px;
+    min-width: 180px;
     padding: 5px;
     
 }
@@ -32,7 +32,7 @@ nav {
         Cantarell, 'Helvetica Neue', sans-serif;
     font-size: 1em;
     border-radius: 15px;
-    border: 3px solid #c30737;
+    border: 3px solid #950740;
     padding:  1em;
     left: 5px;
 }
@@ -62,7 +62,7 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    min-width: 240px;
+    min-width: 180px;
     
 }
 
