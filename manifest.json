@@ -1,0 +1,45 @@
+{
+    "name": "Emoji PWA",
+    "lang": "ru-RU",
+    "short_name": "Emoji PWA",
+    "description": "PWA, отображающее эмодзи",
+    "start_url": "/",
+    "scope": "./",
+    "display": "standalone",
+    "background_color": "#000000",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/512.png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "/256.png",
+            "sizes": "256x256"
+        },
+        {
+            "src": "/192.png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/168.png",
+            "sizes": "168x168"
+        },
+        {
+            "src": "/128.png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "/96.png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "/64.png",
+            "sizes": "64x64"
+        },
+        {
+            "src": "/32.png",
+            "sizes": "32x32"
+        }
+    ]
+}
