@@ -14,7 +14,7 @@ nav {
     width: 22%;
     justify-content: space-between;
     height: 60px;
-    min-width: 240px;
+    min-width: 200px;
     padding: 5px;
     
 }
@@ -131,6 +131,7 @@ footer {
 
 .log_message p{
     white-space: nowrap;
+    overflow: auto;
     text-overflow: ellipsis;
     max-width: 300px;
 }
